@@ -1,0 +1,7 @@
+PUT http://localhost:8080/integrantes/29
+Content-Type: application/json
+
+{
+"name": "Matheus", "cpf": "14433777769", "data_nasc": "2021-04-17T10:48:18.584Z", "plano":"Gold","resgate_domiciliar":true,"desconto_farm":false,
+"tel_res":"2199934666","tel_cel":"2199945678","email":"testealt@gmail.com"
+}
