@@ -2,6 +2,6 @@ POST http://localhost:8080/integrantes/
 Content-Type: application/json
 
 {
-"nome": "Martinelli", "cpf": "14433666769", "data_nasc": "1994-11-01", "plano":"Silver","resgate_domiciliar":false,"desconto_farm":true,
+"nome": "Martinelli", "cpf": "14433666769", "data_nasc": "1994-11-01", "plano":"Silver","resgate_ativo":false,"desconto_farm":true,
 "tel_res":"2199934545","tel_cel":"2199999999","email":"teste@gmail.com"
 }

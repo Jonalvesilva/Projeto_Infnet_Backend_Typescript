@@ -2,5 +2,5 @@ POST http://localhost:8080/dependentes/9
 Content-Type: application/json
 
 {
-"name": "Mathias", "cpf": "14433666769", "data_nasc": "2023-04-17T10:48:18.584Z"
+"nome": "Mathias", "cpf": "14433666769", "data_nasc": "2023-04-17T10:48:18.584Z"
 }
