@@ -2,5 +2,5 @@ PUT http://localhost:8080/dependentes/9/22
 Content-Type: application/json
 
 {
-"nome": "Amorim", "cpf": "14433888769", "data_nasc": "2014-04-27T10:48:18.584Z"
+"nome": "Cezar", "cpf": "14433888769", "data_nasc": "2014-04-27T10:48:18.584Z"
 }
