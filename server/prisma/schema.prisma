@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model contato {
+  id_documento  Int         @id @default(autoincrement())
+  id_integrante Int         @unique
+  tel_cel       String      @db.VarChar(11)
+  tel_res       String      @db.VarChar(10)
+  email         String      @db.VarChar(50)
+  integrantes   integrantes @relation(fields: [id_integrante], references: [id_integrante], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model dependentes {
+  id_dependente   Int         @id @default(autoincrement())
+  id_integrante   Int
+  num_carteirinha String      @unique @default(dbgenerated("(ceil((random() * ('9999999999'::bigint)::double precision)))::text")) @db.VarChar(10)
+  nome            String?     @db.VarChar(50)
+  data_nasc       DateTime?   @db.Date
+  cpf             String?     @db.VarChar(11)
+  integrantes     integrantes @relation(fields: [id_integrante], references: [id_integrante], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model desconto_farmacia {
+  id_integrante Int         @unique
+  ativo         Boolean
+  integrantes   integrantes @relation(fields: [id_integrante], references: [id_integrante], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model integrantes {
+  id_integrante      Int                 @id @default(autoincrement())
+  num_carteirinha    String              @unique @default(dbgenerated("(ceil((random() * ('9999999999'::bigint)::double precision)))::text")) @db.VarChar(10)
+  nome               String              @db.VarChar(50)
+  data_nasc          DateTime            @db.Date
+  cpf                String              @db.VarChar(11)
+  contato            contato?
+  dependentes        dependentes[]
+  desconto_farmacia  desconto_farmacia?
+  plano              plano?
+  resgate_domiciliar resgate_domiciliar?
+}
+
+model plano {
+  id_integrante Int         @unique
+  plano         String      @db.VarChar(30)
+  integrantes   integrantes @relation(fields: [id_integrante], references: [id_integrante], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model resgate_domiciliar {
+  id_integrante Int         @unique
+  ativo         Boolean
+  integrantes   integrantes @relation(fields: [id_integrante], references: [id_integrante], onDelete: Cascade, onUpdate: NoAction)
+}
