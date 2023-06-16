@@ -1,4 +1,4 @@
-PUT http://localhost:8080/integrantes/34
+PUT http://localhost:8080/integrantes/42
 Content-Type: application/json
 
 {
