@@ -1,6 +1,9 @@
 import { faker } from "@faker-js/faker";
 import { IntegrantesRepository } from "./integrantes.repository";
 
+//Executar o server
+//Rodar o comando npx ts-node integrantes.seed.ts na pasta integrantes
+
 const integrantesCount = 2;
 
 function gerarCPF() {
@@ -23,9 +26,9 @@ function gerarCPF() {
 
 async function integrantesSeed() {
   const repository = new IntegrantesRepository();
-  const integrante = generateUser();
 
   for (let i = 0; i < integrantesCount; i++) {
+    const integrante = generateUser();
     const insert = await repository.add(integrante);
     console.log(insert);
   }
@@ -35,7 +38,7 @@ function generateUser() {
   return {
     nome: faker.person.firstName(),
     cpf: gerarCPF().toString(),
-    data: faker.date.past().toISOString(),
+    data_nasc: faker.date.past(),
     plano: "Gold",
     resgate_ativo: true,
     desconto_farm: true,
@@ -45,4 +48,4 @@ function generateUser() {
   };
 }
 
-//ccc
+integrantesSeed();

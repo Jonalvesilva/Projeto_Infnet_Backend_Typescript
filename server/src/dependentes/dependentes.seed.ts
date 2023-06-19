@@ -1,6 +1,9 @@
 import { faker } from "@faker-js/faker";
 import { DependentesRepository } from "./dependentes.repository";
 
+//Executar o server
+//Rodar o comando npx ts-node dependentes.seed.ts na pasta dependentes
+
 const dependenteCount = 2;
 const integranteId = 9; //Colocar id integrante que está cadastrado no banco.
 
@@ -22,11 +25,11 @@ function gerarCPF() {
   return cpf.join("");
 }
 
-async function integrantesSeed() {
+async function dependentesSeed() {
   const repository = new DependentesRepository();
-  const depedente = generateUser();
 
   for (let i = 0; i < dependenteCount; i++) {
+    const depedente = generateUser();
     const insert = await repository.add(integranteId, depedente);
     console.log(insert);
   }
@@ -36,8 +39,8 @@ function generateUser() {
   return {
     nome: faker.person.firstName(),
     cpf: gerarCPF().toString(),
-    data: faker.date.past().toISOString(),
+    data_nasc: faker.date.past(),
   };
 }
 
-//ccc
+dependentesSeed();
