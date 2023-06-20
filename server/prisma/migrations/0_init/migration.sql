@@ -50,6 +50,18 @@ CREATE TABLE "resgate_domiciliar" (
     "ativo" BOOLEAN NOT NULL
 );
 
+-- CreateTable
+CREATE TABLE "funcionarios" (
+    "id" SERIAL NOT NULL,
+    "nome" VARCHAR(50) NOT NULL,
+    "sobrenome" VARCHAR(50) NOT NULL,
+    "email" VARCHAR(50) NOT NULL,
+    "senha" VARCHAR(50) NOT NULL,
+    "created_at" DATE NOT NULL,
+
+    CONSTRAINT "funcionarios_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "contato_id_integrante_key" ON "contato"("id_integrante");
 

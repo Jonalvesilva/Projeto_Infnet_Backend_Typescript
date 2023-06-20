@@ -56,3 +56,12 @@ model resgate_domiciliar {
   ativo         Boolean
   integrantes   integrantes @relation(fields: [id_integrante], references: [id_integrante], onDelete: Cascade, onUpdate: NoAction)
 }
+
+model funcionarios {
+  id         Int      @id @default(autoincrement())
+  nome       String   @db.VarChar(50)
+  sobrenome  String   @db.VarChar(50)
+  email      String   @db.VarChar(50)
+  senha      String   @db.VarChar(50)
+  created_at DateTime @db.Date
+}
