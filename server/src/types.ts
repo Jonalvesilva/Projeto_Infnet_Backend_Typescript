@@ -25,6 +25,12 @@ export type DependenteMaybeOutput<Entity> = {
   errors: ZodIssue[] | null;
 };
 
+//Tipo Funcionario
+export type FuncionarioMaybeOutput<Entity> = {
+  success: boolean;
+  data: Entity | null;
+};
+
 //Tipo Params
 export type Params = {
   limit?: number;
@@ -33,6 +39,8 @@ export type Params = {
   order_by?: string;
   direction?: string;
 };
+
+//
 
 //Interface Repository Integrante
 export interface RepositoryIntegrante<Entity> {
@@ -62,4 +70,11 @@ export interface RepositoryDependente<Entity> {
     id_dependente: number,
     data: Partial<Entity>
   ): Promise<DependenteMaybeOutput<Entity>>;
+}
+
+//Interface Repository Funcionario
+export interface RepositoryFuncionario<Entity> {
+  findByEmailPassword(email: string, senha: string): Promise<Entity | null>;
+  findByEmail(email: string): Promise<Entity | null>;
+  add(data: Omit<Entity, string>): Promise<FuncionarioMaybeOutput<Entity>>;
 }
