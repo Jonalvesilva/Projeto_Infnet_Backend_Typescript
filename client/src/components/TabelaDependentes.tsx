@@ -7,7 +7,8 @@ export type field = {
 };
 
 function reformatDate(dateStr: string) {
-  var dArr = dateStr.split("-");
+  const str = dateStr.slice(0, 10);
+  const dArr = str.split("-");
   return dArr[2] + "/" + dArr[1] + "/" + dArr[0];
 }
 
