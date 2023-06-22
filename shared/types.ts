@@ -29,3 +29,12 @@ export type FindParams = {
   order_by?: string;
   direction?: string;
 };
+
+export type Funcionario = {
+  id: number;
+  nome: string;
+  sobrenome: string;
+  email: string;
+  senha: string;
+  created_at: string;
+};

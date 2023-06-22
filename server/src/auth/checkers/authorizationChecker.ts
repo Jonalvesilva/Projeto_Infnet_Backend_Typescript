@@ -16,16 +16,16 @@ export async function authorizationChecker(action: Action) {
   }
 
   const userId = payload.id;
-  const funcionario = await prisma.funcionarios.findFirst({
+  const user = await prisma.funcionarios.findFirst({
     where: {
       id: userId,
     },
   });
 
-  if (funcionario === null) {
+  if (user === null) {
     return false;
   }
-  action.request.funcionario = funcionario;
+  action.request.user = user;
   return true;
 }
 

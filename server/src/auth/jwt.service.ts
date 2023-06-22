@@ -9,7 +9,7 @@ export class JWTService {
 
   sign(payload: any) {
     const jwt = JWT.sign(payload, jwtSecret, {
-      expiresIn: "120s",
+      expiresIn: "30s",
     });
     return jwt;
   }

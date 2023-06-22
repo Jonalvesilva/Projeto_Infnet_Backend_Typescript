@@ -1,17 +1,28 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Login } from "./routes/login/Login";
+import {
+  unstable_HistoryRouter as HistoryRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+import { SignIn } from "./routes/login/SignIn";
 import { Appbar } from "./components/Appbar";
+import { Home } from "./routes/Home";
+import { SignUp } from "./routes/login/SignUp";
+import { AuthChecker } from "./components/AuthChecker";
+import { browserHistory } from "./browserHistory";
 
 function App() {
   return (
-    <BrowserRouter>
+    <HistoryRouter history={browserHistory}>
       <Appbar />
+      <AuthChecker />
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<SignIn />} />
+        <Route path="/cadastro" element={<SignUp />} />
+        <Route path="/home" element={<Home />} />
       </Routes>
-    </BrowserRouter>
+    </HistoryRouter>
   );
 }
 

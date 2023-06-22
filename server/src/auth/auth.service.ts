@@ -32,7 +32,6 @@ export class AuthService {
       nome: funcionario.nome,
       sobrenome: funcionario.sobrenome,
       email: funcionario.email,
-      created_at: funcionario.created_at,
     };
 
     const jwt = this.jwtService.sign(payload);
@@ -73,7 +72,6 @@ export class AuthService {
       nome: funcionario.nome,
       sobrenome: funcionario.sobrenome,
       email: funcionario.email,
-      created_at: funcionario.created_at,
     };
 
     const jwt = this.jwtService.sign(payload);

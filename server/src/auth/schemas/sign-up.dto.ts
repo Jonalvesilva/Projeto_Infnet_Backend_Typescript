@@ -2,7 +2,7 @@ import { IsEmail, MinLength, MaxLength } from "class-validator";
 
 export class SignUpDto {
   @MinLength(3, {
-    message: "O nome precisa ter pelo menos 2 caracteres",
+    message: "O nome precisa ter pelo menos 3 caracteres",
   })
   @MaxLength(16, {
     message: "O nome precisa ter no máximo 16 caracteres",
@@ -10,10 +10,10 @@ export class SignUpDto {
   nome: string;
 
   @MinLength(3, {
-    message: "O nome precisa ter pelo menos 2 caracteres",
+    message: "O sobrenome precisa ter pelo menos 3 caracteres",
   })
   @MaxLength(16, {
-    message: "O nome precisa ter no máximo 16 caracteres",
+    message: "O sobrenome precisa ter no máximo 16 caracteres",
   })
   sobrenome: string;
 
