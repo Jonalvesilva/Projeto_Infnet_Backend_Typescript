@@ -9,10 +9,12 @@ import { TextNumber } from "../../components/TextNumber";
 import { ErrorMessage } from "../../components/ErrorMessage";
 import { useGlobalStore } from "../../useGlobalStore";
 import { FiLoader } from "react-icons/fi";
+import { RoutesAuthChecker } from "../../components/RoutesAuthChecker";
+import { Toast } from "../../components/Toast";
 
 function getBreadcrumbs(id: number) {
   return [
-    { title: "Página inicial", link: "/" },
+    { title: "Página inicial", link: "/home" },
     { title: "Integrantes", link: `/integrantes/` },
     { title: "Dependentes", link: `/dependentes/${id}` },
   ];
@@ -32,10 +34,24 @@ export function CreateDependente() {
       setIsLoading(false);
       console.log(response);
       if (response.success) {
-        toast("O dependente foi criado com sucesso");
+        toast("O dependente foi criado com sucesso", {
+          render: (message) => (
+            <Toast
+              className="bg-green-800 p-4 text-white text-lg md:text-xl rounded-full"
+              message={message}
+            />
+          ),
+        });
         navigate(`/dependentes/${params.id}`);
       } else {
-        toast("Não foi possível criar o dependente");
+        toast("Não foi possível criar o dependente", {
+          render: (message) => (
+            <Toast
+              className="bg-red-600 p-4 text-white text-lg md:text-xl rounded-full"
+              message={message}
+            />
+          ),
+        });
       }
     },
   });
@@ -45,6 +61,7 @@ export function CreateDependente() {
   return (
     <div>
       <Breadcrumbs links={getBreadcrumbs(Number(params.id))} />
+      <RoutesAuthChecker />
       <h1 className="text-center font-bold italic text-white font-serif my-4 text-2xl md:text-3xl ">
         Adicionar Dependente
       </h1>

@@ -9,6 +9,8 @@ import { Card } from "../../components/Card";
 import { Button } from "../../components/Button";
 import { useGlobalStore } from "../../useGlobalStore";
 import { FiLoader } from "react-icons/fi";
+import { RoutesAuthChecker } from "../../components/RoutesAuthChecker";
+import { Toast } from "../../components/Toast";
 
 const texts = {
   deleteSuccess: "O dependente foi deletado com sucesso!",
@@ -25,7 +27,7 @@ function reformatDate(dateStr: string) {
 
 function getBreadcrumbs(idIntegrante: number) {
   return [
-    { title: "Página inicial", link: "/" },
+    { title: "Página inicial", link: "/home" },
     { title: "Integrantes", link: "/integrantes" },
     {
       title: `Dependentes`,
@@ -63,16 +65,31 @@ export function DependenteView() {
     );
     setIsLoading(false);
     if (response.success) {
-      toast(texts.deleteSuccess);
+      toast(texts.deleteSuccess, {
+        render: (message) => (
+          <Toast
+            className="bg-green-800 p-4 text-white text-lg md:text-xl rounded-full"
+            message={message}
+          />
+        ),
+      });
       navigate(`/dependentes/${params.id}`);
     } else {
-      toast(texts.deleteFailure);
+      toast(texts.deleteFailure, {
+        render: (message) => (
+          <Toast
+            className="bg-red-600 p-4 text-white text-lg md:text-xl rounded-full"
+            message={message}
+          />
+        ),
+      });
     }
   }
 
   return (
     <div>
       <Breadcrumbs links={getBreadcrumbs(Number(params.id))}></Breadcrumbs>
+      <RoutesAuthChecker />
       <Card className="bg-white w-[90%] m-auto p-4 leading-8 rounded-md my-8 md:max-w-screen-md">
         <div className="flex gap-4 mb-2 py-2 border-b">
           <span className="flex flex-row gap-2 md:text-xl">

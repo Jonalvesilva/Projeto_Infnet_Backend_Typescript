@@ -23,8 +23,8 @@ import { CreateDependente } from "./routes/dependentes/CreateDependente";
 function App() {
   return (
     <HistoryRouter history={browserHistory}>
-      <Appbar />
       <AuthChecker />
+      <Appbar />
       <Routes>
         <Route path="/" element={<SignIn />} />
         <Route path="/cadastro" element={<SignUp />} />

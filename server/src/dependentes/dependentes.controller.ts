@@ -8,6 +8,7 @@ import {
   Body,
   Param,
   QueryParams,
+  Authorized,
 } from "routing-controllers";
 import { Service } from "typedi";
 
@@ -43,18 +44,21 @@ export class DependenteController {
     return response;
   }
 
+  @Authorized()
   @Post("/:idIntegrante")
   async add(@Param("idIntegrante") id: string, @Body() body: any) {
     const response = await this.dependenteService.add(Number(id), body);
     return response;
   }
 
+  @Authorized()
   @Delete("/:idIntegrante/:id")
   async delete(@Param("id") id: string) {
     const response = await this.dependenteService.delete(Number(id));
     return response;
   }
 
+  @Authorized()
   @Put("/:idIntegrante/:id")
   async put(@Param("id") id: string, @Body() body: any) {
     const response = await this.dependenteService.edit(Number(id), body);

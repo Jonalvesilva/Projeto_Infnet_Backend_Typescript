@@ -10,6 +10,7 @@ import { asyncDebounce } from "../../asyncDebounce";
 import { PaginationButtons } from "../../components/PaginationButtons";
 import { Breadcrumbs } from "../../components/Breadcumbs";
 import { TabelaIntegrantes } from "../../components/TabelaIntegrantes";
+import { RoutesAuthChecker } from "../../components/RoutesAuthChecker";
 
 const pageSize = config.pageSize;
 const debouncedGetNotepads = asyncDebounce(getIntegrantes, 1000);
@@ -56,7 +57,6 @@ export function IntegrantesView() {
 
   useEffect(() => {
     debouncedGetNotepads(getIntegrantesParams).then(setIntegrantesList);
-    console.log(integrantesList);
     setPage(1);
   }, [direction, orderBy, search]);
 
@@ -69,8 +69,9 @@ export function IntegrantesView() {
   return (
     <div>
       <Breadcrumbs
-        links={[{ title: "Página inicial", link: "/" }]}
+        links={[{ title: "Página inicial", link: "/home" }]}
       ></Breadcrumbs>
+      <RoutesAuthChecker />
       <div className="bg-white w-11/12 h-full rounded-xl mx-auto mt-10 p-3 md:max-w-[1000px]">
         <div className="flex flex-col justify-center items-center md:flex-row">
           <div className="p-3 flex justify-start items-center grow">

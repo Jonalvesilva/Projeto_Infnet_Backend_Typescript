@@ -1,7 +1,9 @@
 import { LinkButton } from "../components/LinkButton";
+import { RoutesAuthChecker } from "../components/RoutesAuthChecker";
 export function Home() {
   return (
     <div className="flex flex-col items-center justify-center md:h-[750px]">
+      <RoutesAuthChecker />
       <div className="w-full text-white py-12 px-2 flex justify-center text-xl text-center md:text-2xl lg:text-4xl">
         <h2>
           Para empresas e pessoas, o melhor plano para cuidar de sua saúde

@@ -8,6 +8,8 @@ import { deleteIntegrante } from "../../api/integrantes/deleteIntegrante";
 import { Card } from "../../components/Card";
 import { useGlobalStore } from "../../useGlobalStore";
 import { FiLoader } from "react-icons/fi";
+import { RoutesAuthChecker } from "../../components/RoutesAuthChecker";
+import { Toast } from "../../components/Toast";
 
 const texts = {
   deleteSuccess: "O integrante foi deletado com sucesso!",
@@ -18,7 +20,7 @@ const texts = {
 
 function getBreadcrumbs() {
   return [
-    { title: "Página inicial", link: "/" },
+    { title: "Página inicial", link: "/home" },
     { title: "Integrantes", link: "/integrantes" },
   ];
 }
@@ -74,16 +76,31 @@ export function IntegranteView() {
     const response = await deleteIntegrante(Number(params.id));
     setIsLoading(false);
     if (response.success) {
-      toast(texts.deleteSuccess);
+      toast(texts.deleteSuccess, {
+        render: (message) => (
+          <Toast
+            className="bg-green-800 p-4 text-white text-lg md:text-xl rounded-full"
+            message={message}
+          />
+        ),
+      });
       navigate("/integrantes");
     } else {
-      toast(texts.deleteFailure);
+      toast(texts.deleteFailure, {
+        render: (message) => (
+          <Toast
+            className="bg-red-600 p-4 text-white text-lg md:text-xl rounded-full"
+            message={message}
+          />
+        ),
+      });
     }
   }
 
   return (
     <div>
       <Breadcrumbs links={getBreadcrumbs()}></Breadcrumbs>
+      <RoutesAuthChecker />
       <Card className="bg-white w-[90%] m-auto p-4 leading-8 rounded-md my-8 md:max-w-screen-md">
         <div className="flex gap-4 mb-2 py-2 border-b">
           <span className="flex flex-row gap-2 md:text-xl">

@@ -9,6 +9,7 @@ import { getDependentes } from "../../api/dependentes/getDependentes";
 import { asyncDebounce } from "../../asyncDebounce";
 import { Breadcrumbs } from "../../components/Breadcumbs";
 import { TabelaDependentes } from "../../components/TabelaDependentes";
+import { RoutesAuthChecker } from "../../components/RoutesAuthChecker";
 
 const pageSize = config.pageSize;
 const debouncedGetNotepads = asyncDebounce(getDependentes, 1000);
@@ -55,10 +56,11 @@ export function DependentesView() {
     <div>
       <Breadcrumbs
         links={[
-          { title: "Página inicial", link: "/" },
+          { title: "Página inicial", link: "/home" },
           { title: "Integrantes", link: "/integrantes" },
         ]}
       ></Breadcrumbs>
+      <RoutesAuthChecker />
       <div className="bg-white w-11/12 h-full rounded-xl mx-auto mt-10 p-3 md:max-w-[1000px]">
         <div className="flex flex-col justify-center items-center md:flex-row">
           <div className="p-3 flex flex-col items-center justify-start md:items-start grow">

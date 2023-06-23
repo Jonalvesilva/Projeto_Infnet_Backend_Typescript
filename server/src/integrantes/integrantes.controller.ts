@@ -8,6 +8,7 @@ import {
   Body,
   Param,
   QueryParams,
+  Authorized,
 } from "routing-controllers";
 import { Service } from "typedi";
 
@@ -40,18 +41,21 @@ export class IntegranteController {
     return response;
   }
 
+  @Authorized()
   @Post()
   async add(@Body() body: any) {
     const response = await this.integranteService.add(body);
     return response;
   }
 
+  @Authorized()
   @Delete("/:id")
   async delete(@Param("id") id: string) {
     const response = await this.integranteService.delete(Number(id));
     return response;
   }
 
+  @Authorized()
   @Put("/:id")
   async edit(@Param("id") id: string, @Body() body: any) {
     const response = await this.integranteService.edit(Number(id), body);

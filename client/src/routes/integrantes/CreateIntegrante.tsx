@@ -9,10 +9,12 @@ import { TextNumber } from "../../components/TextNumber";
 import { ErrorMessage } from "../../components/ErrorMessage";
 import { useGlobalStore } from "../../useGlobalStore";
 import { FiLoader } from "react-icons/fi";
+import { RoutesAuthChecker } from "../../components/RoutesAuthChecker";
+import { Toast } from "../../components/Toast";
 
 function getBreadcrumbs(title: string, id: number) {
   return [
-    { title: "Página inicial", link: "/" },
+    { title: "Página inicial", link: "/home" },
     { title: "Integrantes", link: `/integrantes/` },
   ];
 }
@@ -45,10 +47,24 @@ export function CreateIntegrante() {
       const response = await postIntegrante(integrante);
       setIsLoading(false);
       if (response.success) {
-        toast("O integrante foi adcionado com sucesso");
+        toast("O integrante foi adicionado com sucesso", {
+          render: (message) => (
+            <Toast
+              className="bg-green-800 p-4 text-white text-lg md:text-xl rounded-full"
+              message={message}
+            />
+          ),
+        });
         navigate(`/integrantes`);
       } else {
-        toast("Não foi possível adicionar o integrante");
+        toast("Não foi possível adicionar o integrante", {
+          render: (message) => (
+            <Toast
+              className="bg-red-600 p-4 text-white text-lg md:text-xl rounded-full"
+              message={message}
+            />
+          ),
+        });
       }
     },
   });
@@ -58,6 +74,7 @@ export function CreateIntegrante() {
   return (
     <div>
       <Breadcrumbs links={getBreadcrumbs(`Perfil`, Number(params.id))} />
+      <RoutesAuthChecker />
       <h1 className="text-center font-bold italic text-white font-serif my-4 text-2xl md:text-3xl ">
         Adicionar Integrante
       </h1>
